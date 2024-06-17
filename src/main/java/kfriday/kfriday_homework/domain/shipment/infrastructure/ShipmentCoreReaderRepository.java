@@ -17,4 +17,8 @@ public class ShipmentCoreReaderRepository implements ShipmentReaderRepository {
 	public Optional<Shipment> findShipment(Long id) {
 		return shipmentJpaRepository.findById(id);
 	}
+
+	public Optional<Shipment> findByTrackingNo(String trackingNo) {
+		return shipmentJpaRepository.findByTrackingNo(trackingNo);
+	}
 }

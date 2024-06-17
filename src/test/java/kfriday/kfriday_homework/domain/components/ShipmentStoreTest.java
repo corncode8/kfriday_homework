@@ -6,6 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.DisplayName;
@@ -16,6 +19,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import kfriday.kfriday_homework.api.support.exceptions.BaseException;
+import kfriday.kfriday_homework.domain.image.entity.Image;
 import kfriday.kfriday_homework.domain.shipment.components.ShipmentStore;
 import kfriday.kfriday_homework.domain.shipment.entity.Shipment;
 import kfriday.kfriday_homework.domain.shipment.repository.ShipmentStoreRepository;
@@ -54,16 +58,22 @@ public class ShipmentStoreTest {
 	    //given
 		Long testId = 1L;
 		String trackingNo = "111122223333";
+		String testFilename = "testName";
 
 		Shipment shipment = Shipment.builder()
 			.trackingNo("test")
 			.build();
+
+		List<Image> images = Arrays.asList(
+			new Image(testFilename, Image.Type.PKG)
+		);
+
 		when(shipmentStoreRepository.findShipment(testId)).thenReturn(Optional.of(shipment));
 		// update 전 trackingNo 검증
 		assertEquals(shipment.getTrackingNo(), shipment.getTrackingNo());
 
 	    //when
-		shipmentStore.updateShipment(testId, trackingNo);
+		shipmentStore.updateShipment(testId, trackingNo, images);
 
 	    //then
 		assertEquals(shipment.getTrackingNo(), trackingNo);
@@ -75,11 +85,15 @@ public class ShipmentStoreTest {
 	    //given
 		Long testId = 1L;
 		String trackingNo = "111122223333";
+		String testFilename = "testName";
 
+		List<Image> images = Arrays.asList(
+			new Image(testFilename, Image.Type.PKG)
+		);
 		when(shipmentStoreRepository.findShipment(testId)).thenReturn(Optional.empty());
 
 		//when & then
-		BaseException exception = assertThrows(BaseException.class, () -> shipmentStore.updateShipment(testId, trackingNo));
+		BaseException exception = assertThrows(BaseException.class, () -> shipmentStore.updateShipment(testId, trackingNo, images));
 		assertEquals(NOT_FIND_SHIPMENT.getMessage(), exception.getMessage());
 	}
 

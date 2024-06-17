@@ -19,4 +19,5 @@ public class ShipmentReader {
 		return shipmentReaderRepository.findShipment(id)
 			.orElseThrow(() -> new BaseException(NOT_FIND_SHIPMENT));
 	}
+
 }

@@ -20,6 +20,7 @@ public enum BaseResponseStatus {
 	 */
 
 	NOT_FIND_SHIPMENT(false, HttpStatus.NOT_FOUND.value(), "일치하는 Shipment가 없습니다."),
+	DUPLICATE_TRACKING_NUMBER(false, HttpStatus.NOT_FOUND.value(), "중복된 trackingNo 입니다."),
 
 	/**
 	 * 500 :  Database, Server 오류

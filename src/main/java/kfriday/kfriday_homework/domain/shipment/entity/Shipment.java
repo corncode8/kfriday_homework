@@ -1,5 +1,6 @@
 package kfriday.kfriday_homework.domain.shipment.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -36,11 +37,12 @@ public class Shipment {
 	@Column(nullable = false, length = 10)
 	private State status = State.ACTIVE;
 
-	@OneToMany(mappedBy = "shipment", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<Image> images;
+	@OneToMany(mappedBy = "shipment", cascade = CascadeType.ALL)
+	private List<Image> images = new ArrayList<>();
 
-	public void updateTrackingNo(String trackingNo) {
+	public void updateShipment(String trackingNo, List<Image> images) {
 		this.trackingNo = trackingNo;
+		this.images = images;
 	}
 
 	public void setDelete() {
@@ -51,8 +53,18 @@ public class Shipment {
 		ACTIVE, DELETED
 	}
 
-	@Builder
+	public static Shipment create(String trackingNo, List<Image> images) {
+		return new Shipment(trackingNo, images);
+	}
+
 	public Shipment(String trackingNo, List<Image> images) {
+		this.trackingNo = trackingNo;
+		this.images = images;
+	}
+
+	@Builder
+	public Shipment(Long id, String trackingNo, List<Image> images) {
+		this.id = id;
 		this.trackingNo = trackingNo;
 		this.images = images;
 	}

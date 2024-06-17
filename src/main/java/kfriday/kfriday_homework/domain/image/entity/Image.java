@@ -14,9 +14,11 @@ import javax.persistence.Table;
 
 import kfriday.kfriday_homework.domain.shipment.entity.Shipment;
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Getter
 @Table(name = "image")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Image {
@@ -32,11 +34,22 @@ public class Image {
 	@Column(nullable = false, length = 10)
 	private Type type = Type.PKG;
 
-	public enum Type {
-		PKG
-	}
-
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "shipment_id")
 	private Shipment shipment;
+
+	public enum Type {
+		PKG, OTHER
+	}
+
+
+	public static Image create(String filename, Type type) {
+		return new Image(filename, type);
+	}
+
+
+	public Image(String fileName, Type type) {
+		this.fileName = fileName;
+		this.type = type;
+	}
 }

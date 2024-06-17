@@ -15,7 +15,7 @@ spring:
     init:
       platform: mysql
   datasource:
-    url: jdbc:mysql://localhost:3306/flow?serverTimezone=Asia/Seoul
+    url: jdbc:mysql://localhost:3306/kfriday?serverTimezone=Asia/Seoul
     username: root
     password: Password1!
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -27,22 +27,6 @@ server:
   error:
     include-message: always
     include-binding-errors: always
-
-springdoc:
-  swagger-ui:
-    path: /swagger-ui.html
-    groups-order: DESC
-    operationsSorter: method
-    disable-swagger-default-url: true
-    display-request-duration: true
-  api-docs:
-    path: /api-docs
-  show-actuator: true
-  default-consumes-media-type: application/json
-  default-produces-media-type: application/json
-  paths-to-match:
-    - /**
-
 
 ---
 spring:
