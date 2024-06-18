@@ -56,6 +56,7 @@ public class ShipmentControllerTest {
 		Shipment shipment = Shipment.builder()
 			.trackingNo(testTrackingNo)
 			.build();
+
 		shipmentStore.save(shipment);
 	}
 

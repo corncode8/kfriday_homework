@@ -14,7 +14,7 @@ import kfriday.kfriday_homework.api.shipment.response.DeleteShipmentResponse;
 import kfriday.kfriday_homework.api.shipment.response.GetShipmentResponse;
 import kfriday.kfriday_homework.api.shipment.usecase.CreateShipmentUseCase;
 import kfriday.kfriday_homework.api.shipment.usecase.DeleteShipmentUseCase;
-import kfriday.kfriday_homework.api.shipment.usecase.ReadShipmentUseCase;
+import kfriday.kfriday_homework.api.shipment.usecase.GetShipmentUseCase;
 import kfriday.kfriday_homework.api.shipment.usecase.UpdateShipmentUseCase;
 import kfriday.kfriday_homework.api.support.response.BaseResponse;
 import lombok.RequiredArgsConstructor;
@@ -27,7 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 public class ShipmentController {
 
 	private final CreateShipmentUseCase createShipmentUseCase;
-	private final ReadShipmentUseCase readShipmentUseCase;
+	private final GetShipmentUseCase getShipmentUseCase;
 	private final UpdateShipmentUseCase updateShipmentUseCase;
 	private final DeleteShipmentUseCase deleteShipmentUseCase;
 
@@ -50,7 +50,7 @@ public class ShipmentController {
 	 */
 	@GetMapping("shipment/{id}")
 	public BaseResponse<GetShipmentResponse> getShipment(@PathVariable("id") Long id) {
-		GetShipmentResponse resd = readShipmentUseCase.get(id);
+		GetShipmentResponse resd = getShipmentUseCase.get(id);
 
 		return new BaseResponse<>(resd);
 	}

@@ -11,6 +11,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -22,7 +23,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
-@Table(name = "shipment")
+@Table(name = "shipment", indexes = @Index(name = "idx_tacking_no", columnList = "tracking_no"))
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Shipment {
 

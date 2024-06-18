@@ -11,7 +11,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
-public class ReadShipmentUseCase {
+public class GetShipmentUseCase {
 
 	private final ShipmentReader shipmentReader;
 

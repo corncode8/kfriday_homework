@@ -21,10 +21,10 @@ import kfriday.kfriday_homework.domain.shipment.entity.Shipment;
 @Testcontainers
 @SpringBootTest
 @ActiveProfiles("test")
-public class ReadShipmentUseCaseTest {
+public class GetShipmentUseCaseTest {
 
 	@Autowired
-	private ReadShipmentUseCase readShipmentUseCase;
+	private GetShipmentUseCase getShipmentUseCase;
 
 	@Autowired
 	private ShipmentStore shipmentStore;
@@ -49,7 +49,7 @@ public class ReadShipmentUseCaseTest {
 		Long testId = 1L;
 
 		//when
-		GetShipmentResponse result = readShipmentUseCase.get(testId);
+		GetShipmentResponse result = getShipmentUseCase.get(testId);
 
 	    //then
 		assertNotNull(result);
